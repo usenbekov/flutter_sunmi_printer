@@ -26,6 +26,7 @@ class SunmiPrinter {
   static const String PRINT_TEXT = "printText";
   static const String PRINT_ROW = "printRow";
   static const String PRINT_IMAGE = "printImage";
+  static const String SEND_RAW_DATA = "sendRawData";
 
   static const MethodChannel _channel =
       const MethodChannel('flutter_sunmi_printer');
@@ -129,6 +130,12 @@ class SunmiPrinter {
     await _channel.invokeMethod(PRINT_IMAGE, {
       "base64": base64,
       "align": align.value,
+    });
+  }
+
+  static Future<void> sendRawData(String base64) async {
+    await _channel.invokeMethod(SEND_RAW_DATA, {
+      "base64": base64,
     });
   }
 }
